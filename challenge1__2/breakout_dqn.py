@@ -65,7 +65,7 @@ from stable_baselines3.common.env_util import make_atari_env
 from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack
 
 # CHANGE THIS to try a different Atari game
-ENV_ID = "ALE/Breakout-v5"
+ENV_ID = "ALE/Pitfall-v5"
 
 # Number of consecutive frames stacked together as a single observation.
 # Stacking gives the agent a sense of motion (e.g. ball direction/speed).

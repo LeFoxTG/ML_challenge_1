@@ -1,9 +1,11 @@
 [project]
-name = "deb-breakout"
+name = "deb-pitfall"
 version = "0.1.0"
-description = "THis is a simple game solutioner"
+description = "IA Agent that solves Pitfall Atari game using DQN for Challenge 1"
 authors = [
-    {name = "Prof. Carlos Andres Sierra",email = "cavirguezs@udistrital.edu.co"}
+    {name = "Angelo Alejandro Ibañez Hernandez"},
+    {name = "David Felipe Ariza Ariza"},
+    {name = "Cristhian Samuel Truque Cabrejo"}
 ]
 license = {text = "GNU/GPL 3.0"}
 requires-python = ">=3.11"

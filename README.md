@@ -4,7 +4,7 @@ This repository contains the implementation, experiments, and results for traini
 
 ## Repository Structure
 
-The repository is structured inside the `challenge1__<group_id>` directory as required:
+The repository is structured inside the `challenge1__2` directory as required:
 - `breakout_dqn.py`: Main script for training, evaluating, and playing the DQN agent.
 - `sweep_configs.json`: Configuration file containing all inicial hyperparameter experiments, including baseline and OFAT variations.
 - `sweep_phase2.json`: Configuration file containing more specific hyperparameters mixing the best results in the first phase.

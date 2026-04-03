@@ -44,6 +44,8 @@ Trying a different Atari game
 
 from __future__ import annotations
 
+import hashlib
+from collections import defaultdict
 import argparse
 import json
 import os
@@ -133,10 +135,37 @@ class TensorBoardCallback(BaseCallback):
 
         return True  # returning False would abort training
 
+class CountBasedCuriosityWrapper(gym.Wrapper):
+    """
+    Adds a small intrinsic reward for visiting novel states.
+    Uses a hash of the downsampled observation as a state identifier.
+    bonus = beta / sqrt(visit_count)
+    """
+    def __init__(self, env, beta: float = 0.01, downsample: int = 8):
+        super().__init__(env)
+        self.beta = beta
+        self.downsample = downsample
+        self._counts: dict = defaultdict(int)
+
+    def _obs_hash(self, obs: np.ndarray) -> str:
+        # Downsample to reduce state space, then hash
+        small = obs[::self.downsample, ::self.downsample]
+        return hashlib.md5(small.tobytes()).hexdigest()
+
+    def step(self, action):
+        obs, reward, terminated, truncated, info = self.env.step(action)
+        key = self._obs_hash(obs)
+        self._counts[key] += 1
+        intrinsic = self.beta / np.sqrt(self._counts[key])
+        return obs, reward + intrinsic, terminated, truncated, info
+
+    def reset(self, **kwargs):
+        return self.env.reset(**kwargs)
 
 # Environment Builders 
 
-def build_training_environment(seed: int) -> VecFrameStack:
+def build_training_environment(seed: int, use_curiosity: bool = False, 
+                                curiosity_beta: float = 0.01) -> VecFrameStack:
     """Create a vectorised, preprocessed Atari environment for training.
 
     Applies the standard Atari preprocessing pipeline automatically via
@@ -153,10 +182,16 @@ def build_training_environment(seed: int) -> VecFrameStack:
     Returns:
         A VecFrameStack-wrapped vectorised environment ready for DQN.
     """
-    env = make_atari_env(ENV_ID, n_envs=1, seed=seed)
+    def _make_env():
+        env = gym.make(ENV_ID)
+        env = AtariWrapper(env)
+        if use_curiosity:
+            env = CountBasedCuriosityWrapper(env, beta=curiosity_beta)
+        return env
+    
+    env = DummyVecEnv([_make_env])
     env = VecFrameStack(env, n_stack=N_STACK)
     return env
-
 
 def build_playing_environment() -> VecFrameStack:
     """Create a human-rendered Atari environment for watching the agent play.
@@ -188,6 +223,8 @@ def train_agent(
     seed: int,
     tensorboard_log: str,
     hparams: dict | None = None,
+    use_curiosity: bool = False,
+    curiosity_beta: float = 0.01,
 ) -> float:
     """Train a DQN agent and save the model.
 
@@ -258,7 +295,8 @@ def train_agent(
     _tb_writer.add_hparams(hparams, metric_dict={"hparam/episode_reward": 0})
     _tb_writer.close()
 
-    env = build_training_environment(seed=seed)
+    env = build_training_environment(seed=seed, use_curiosity=use_curiosity,
+        curiosity_beta=curiosity_beta,)
 
     model = DQN(
         policy="CnnPolicy",
@@ -403,6 +441,8 @@ def run_sweep(
             "exploration_final_eps":  cfg["exploration_final_eps"],
             "timesteps":              exp_timesteps,
             "seed":                   seed,
+            "use_curiosity":          cfg.get("use_curiosity", False),
+            "curiosity_beta":         cfg.get("curiosity_beta", 0.01),
         }
 
         model_path = str(tmp_model_dir / name)
@@ -414,6 +454,8 @@ def run_sweep(
             seed=seed,
             tensorboard_log=log_dir,
             hparams=hparams,
+            use_curiosity=cfg.get("use_curiosity", False),
+            curiosity_beta=cfg.get("curiosity_beta", 0.01),
         )
         results.append((name, score))
         print(f"  → final mean reward: {score:.2f}")

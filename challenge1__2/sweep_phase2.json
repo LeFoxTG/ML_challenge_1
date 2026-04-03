@@ -1,0 +1,67 @@
+[
+  {
+    "name": "11_combined_best",
+    "note": "Combina target_2000 + explore_extreme como punto de partida.",
+    "learning_rate": 1e-4,
+    "buffer_size": 50000,
+    "learning_starts": 10000,
+    "batch_size": 64,
+    "gamma": 0.99,
+    "train_freq": 4,
+    "target_update_interval": 2000,
+    "exploration_fraction": 0.30,
+    "exploration_final_eps": 0.02
+  },
+  {
+    "name": "12_extreme_explore_higheps",
+    "note": "Epsilon final mucho más alto para evitar colapso de exploración.",
+    "learning_rate": 1e-4,
+    "buffer_size": 50000,
+    "learning_starts": 10000,
+    "batch_size": 64,
+    "gamma": 0.99,
+    "train_freq": 4,
+    "target_update_interval": 2000,
+    "exploration_fraction": 0.50,
+    "exploration_final_eps": 0.10
+  },
+  {
+    "name": "13_big_start",
+    "note": "Más pasos aleatorios al inicio antes de aprender (más memoria random).",
+    "learning_rate": 1e-4,
+    "buffer_size": 100000,
+    "learning_starts": 50000,
+    "batch_size": 64,
+    "gamma": 0.99,
+    "train_freq": 4,
+    "target_update_interval": 2000,
+    "exploration_fraction": 0.30,
+    "exploration_final_eps": 0.05
+  },
+  {
+    "name": "14_slow_target",
+    "note": "Target update muy lento (5000) + alta exploración.",
+    "learning_rate": 1e-4,
+    "buffer_size": 50000,
+    "learning_starts": 10000,
+    "batch_size": 64,
+    "gamma": 0.995,
+    "train_freq": 4,
+    "target_update_interval": 5000,
+    "exploration_fraction": 0.30,
+    "exploration_final_eps": 0.05
+  },
+  {
+    "name": "15_gamma_high",
+    "note": "Gamma 0.995 para valorar más recompensas futuras lejanas (clave en Pitfall).",
+    "learning_rate": 1e-4,
+    "buffer_size": 100000,
+    "learning_starts": 25000,
+    "batch_size": 64,
+    "gamma": 0.995,
+    "train_freq": 4,
+    "target_update_interval": 2000,
+    "exploration_fraction": 0.30,
+    "exploration_final_eps": 0.05
+  }
+]

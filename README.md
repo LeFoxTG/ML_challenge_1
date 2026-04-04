@@ -5,7 +5,7 @@ This repository contains the implementation, experiments, and results for traini
 ## Repository Structure
 
 The repository is structured inside the `challenge1__2` directory as required:
-- `breakout_dqn.py`: Main script for training, evaluating, and playing the DQN agent.
+- `pitfall_dqn.py`: Main script for training, evaluating, and playing the DQN agent.
 - `sweep_configs.json`: Configuration file containing all inicial hyperparameter experiments, including baseline and OFAT variations.
 - `sweep_phase2.json`: Configuration file containing more specific hyperparameters mixing the best results in the first phase.
 - `sweep_curiosity.json`: Configuration file containing hyperparameters for testing agent's behaviour after adding intrinsic curiosity approach.
@@ -23,12 +23,12 @@ pip install -r requirements.txt
 
 ## Reproducing the Best Reported Run
 
-After running 30 baseline and OFAT experiments, our results showed that standard $\epsilon$-greedy exploration is insufficient for Pitfall's sparse rewards. Our best reported run utilised Intrinsic Curiosity `(use_curiosity: true, curiosity_beta: 0.05)` for 500,000 timesteps, which successfully motivated the agent to explore sub-surface levels.
+After running 30 baseline and OFAT experiments, our results showed that standard $\epsilon$-greedy exploration is insufficient for Pitfall's sparse rewards. Our best reported run utilised Intrinsic Curiosity `(use_curiosity: true, curiosity_beta: 0.01)` for 500,000 timesteps, which successfully motivated the agent to explore sub-surface levels.
 
 To exactly reproduce our best training run (Seed 100), execute the following command:
 
 ```bash
-python breakout_dqn.py --mode train --experiment 16_curiosity_beta001 --model-path models/curiosity/best_model_seed_100 --seed 100 --tensorboard-log logs/curiosity
+python pitfall_dqn.py --mode train --experiment 16_curiosity_beta001 --model-path models/curiosity/best_model_seed_42 --seed 42 --tensorboard-log logs/curiosity/seed_42/sweep
 ```
 
 ### Watching the agent play
@@ -36,7 +36,7 @@ python breakout_dqn.py --mode train --experiment 16_curiosity_beta001 --model-pa
 To observe the trained agent's behaviour (e.g., descending the stairs as documented in our IEEE paper), run the play mode using the generated model:
 
 ```bash
-python breakout_dqn.py --mode play --model-path models/curiosity/best_model_seed_100 --episodes 3
+python pitfall_dqn.py --mode play --model-path models/curiosity/best_model_seed_42 --episodes 3
 ```
 
 ### Monitoring the Training
@@ -44,7 +44,7 @@ python breakout_dqn.py --mode play --model-path models/curiosity/best_model_seed
 To view the learning curves and curiosity-driven exploration metrics, launch TensorBoard:
 
 ```bash
-python -m tensorboard.main --logdir logs/curiosity/16_curiosity_beta001 --port 6006
+python -m tensorboard.main --logdir logs/curiosity/seed_42/sweep/16_curiosity_beta001 --port 6006
 ```
 
 Open http://localhost:6006 in your browser to inspect the metrics.

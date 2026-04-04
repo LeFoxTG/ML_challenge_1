@@ -214,7 +214,7 @@ def build_training_environment(
     """
 
     def _make_env():
-        env = gym.make(ENV_ID, render_mode="human")
+        env = gym.make(ENV_ID)
         env = AtariWrapper(env,)
         """ Add reward shaping for better learning signal """
         # env = RewardShapingWrapper(env)  

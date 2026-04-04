@@ -30,21 +30,5 @@
     "use_curiosity": true,
     "curiosity_beta": 0.05,
     "timesteps": 500000
-  },
-  {
-    "name": "18_curiosity_beta001_no_clipping_reward",
-    "note": "Count-based curiosity beta=0.01 on top of combined_best config. Using no clipping reward to give more signal to the curiosity module.",
-    "learning_rate": 1e-4,
-    "buffer_size": 50000,
-    "learning_starts": 10000,
-    "batch_size": 64,
-    "gamma": 0.99,
-    "train_freq": 4,
-    "target_update_interval": 2000,
-    "exploration_fraction": 0.30,
-    "exploration_final_eps": 0.02,
-    "use_curiosity": true,
-    "curiosity_beta": 0.01,
-    "timesteps": 300000
   }
 ]

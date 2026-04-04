@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 After running 30 baseline and OFAT experiments, our results showed that standard $\epsilon$-greedy exploration is insufficient for Pitfall's sparse rewards. Our best reported run utilised Intrinsic Curiosity `(use_curiosity: true, curiosity_beta: 0.01)` for 500,000 timesteps, which successfully motivated the agent to explore sub-surface levels.
 
-To exactly reproduce our best training run (Seed 100), execute the following command:
+To exactly reproduce our best training run (Seed 42), execute the following command:
 
 ```bash
 python pitfall_dqn.py --mode train --experiment 16_curiosity_beta001 --model-path models/curiosity/best_model_seed_42 --seed 42 --tensorboard-log logs/curiosity/seed_42/sweep

@@ -8,7 +8,7 @@ The repository is structured inside the `challenge1__2` directory as required:
 - [`pitfall_dqn.py`](challenge1__2/pitfall_dqn.py): Main script for training, evaluating, and playing the DQN agent.
 - [`sweep_configs.json`](challenge1__2/sweep_configs.json): Configuration file containing all inicial hyperparameter experiments, including baseline and OFAT variations.
 - [`sweep_phase2.json`](challenge1__2/sweep_phase2.json): Configuration file containing more specific hyperparameters mixing the best results in the first phase.
-- [`sweep_curiosity.json`](challenge1__2/sweep_curiosity.jwon): Configuration file containing hyperparameters for testing agent's behaviour after adding intrinsic curiosity approach.
+- [`sweep_curiosity.json`](challenge1__2/sweep_curiosity.json): Configuration file containing hyperparameters for testing agent's behaviour after adding intrinsic curiosity approach.
 - [`models/`](challenge1__2/models): Directory where the trained `.zip` models are saved.
 - [`logs/`](challenge1__2/logs): TensorBoard event files for all experimental seeds.
 - [`challenge1__2_paper.pdf`](challenge1__2/challenge1__2_paper.pdf): IEEE format scientific report detailing our findings.

@@ -51,6 +51,42 @@ Open http://localhost:6006 in your browser to inspect the metrics.
 
 ## Video
 
-Link to video: ...
+Link to video: 
+
+https://udistritaleduco-my.sharepoint.com/:v:/g/personal/aaibanezh_udistrital_edu_co/IQAiQLEW8VSCToQ1lvwm7_noAXIJX_SznqSeJhaJzu1Zluo?e=WN5AEB
 
 In this video we present our work on addressing the sparse reward problem in the Pitfall! environment using Deep Q-Networks (DQN). We conducted a systematic evaluation of different hyperparameter configurations and analyzed their impact on the agent’s performance. After identifying the limitations of standard approaches, we introduced intrinsic curiosity to enhance exploration. Our results show that while hyperparameter tuning provides limited improvements, curiosity plays a key role in enabling the agent to achieve positive rewards. Overall, our work highlights the importance of intrinsic motivation in solving complex reinforcement learning problems with sparse feedback.
+
+### Timestamps
+
+0:00 - Greetings
+
+0:04 - The Problem: Sparse Rewards in Atari
+
+1:20 - Deep Q-Networks (DQN)
+
+2:26 - Experimental Design
+
+3:19 - Baseline: The Stay-Still Problem
+
+3:57 - Baseline Tensorboard
+
+4:43 - Phase 1: OFAT Sweep Results
+
+5:05 - Best Phase 1 Model Playing
+
+5:26 - Phase 2: Combined Configurations
+
+5:56 - Phase 3: Intrinsic Curiosity Wrapper
+
+6:30 - Best Curiosity Model Playing
+
+6:50 - Curiosity Tensorboard
+
+7:03 - Ablation Study
+
+8:01 - Failure Modes & Key Findings
+
+8:44 - Dismissed Technique: Reward Shaping
+
+9:02 - Conclusions & Future Work

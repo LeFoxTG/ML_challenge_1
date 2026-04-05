@@ -5,7 +5,7 @@ This repository contains the implementation, experiments, and results for traini
 ## Repository Structure
 
 The repository is structured inside the `challenge1__2` directory as required:
-- `pitfall_dqn.py`: Main script for training, evaluating, and playing the DQN agent.
+- [`pitfall_dqn.py`](challenge): Main script for training, evaluating, and playing the DQN agent.
 - `sweep_configs.json`: Configuration file containing all inicial hyperparameter experiments, including baseline and OFAT variations.
 - `sweep_phase2.json`: Configuration file containing more specific hyperparameters mixing the best results in the first phase.
 - `sweep_curiosity.json`: Configuration file containing hyperparameters for testing agent's behaviour after adding intrinsic curiosity approach.

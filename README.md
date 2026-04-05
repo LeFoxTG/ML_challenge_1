@@ -48,3 +48,9 @@ python -m tensorboard.main --logdir logs/curiosity/sweep/17_curiosity_beta005 --
 ```
 
 Open http://localhost:6006 in your browser to inspect the metrics.
+
+## Video
+
+Link to video: ...
+
+In this video we present our work on addressing the sparse reward problem in the Pitfall! environment using Deep Q-Networks (DQN). We conducted a systematic evaluation of different hyperparameter configurations and analyzed their impact on the agent’s performance. After identifying the limitations of standard approaches, we introduced intrinsic curiosity to enhance exploration. Our results show that while hyperparameter tuning provides limited improvements, curiosity plays a key role in enabling the agent to achieve positive rewards. Overall, our work highlights the importance of intrinsic motivation in solving complex reinforcement learning problems with sparse feedback.

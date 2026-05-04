@@ -90,3 +90,5 @@ In this video we present our work on addressing the sparse reward problem in the
 [8:44](https://udistritaleduco-my.sharepoint.com/:v:/g/personal/aaibanezh_udistrital_edu_co/IQAiQLEW8VSCToQ1lvwm7_noAU2uGRuxEzoT9jn3fmY5kgo?e=kmGCkg&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NTI0LjkzfX0%3D) - Dismissed Technique: Reward Shaping
 
 [9:02](https://udistritaleduco-my.sharepoint.com/:v:/g/personal/aaibanezh_udistrital_edu_co/IQAiQLEW8VSCToQ1lvwm7_noAU2uGRuxEzoT9jn3fmY5kgo?e=OZapd9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NTQyLjg0fX0%3D) - Conclusions & Future Work
+
+# Challenge 3: Proximal Policy Optimization for Atari-Pitfall (PPO)

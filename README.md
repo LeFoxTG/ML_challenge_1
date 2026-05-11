@@ -92,3 +92,47 @@ In this video we present our work on addressing the sparse reward problem in the
 [9:02](https://udistritaleduco-my.sharepoint.com/:v:/g/personal/aaibanezh_udistrital_edu_co/IQAiQLEW8VSCToQ1lvwm7_noAU2uGRuxEzoT9jn3fmY5kgo?e=OZapd9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NTQyLjg0fX0%3D) - Conclusions & Future Work
 
 # Challenge 3: Proximal Policy Optimization for Atari-Pitfall (PPO)
+This repository contains the implementation, experiments, and results for training a PPO agent on the `ALE/Pitfall-v5` environment, as part of Challenge 3 for the Machine Learning course.
+
+## Repository Structure
+
+The repository is structured inside the `challenge3__2` directory as required:
+- [`train.py`](challenge3__2/train.py): Main script for training the PPO agent.
+- [`evaluate.py`](challenge3__2/train.py): Main script for evaluating and see the PPO agent playing.
+- [`ppo_agent.py`](challenge3__2/ppo_agent.py): Contains the PPOAgent class, including action selection, trajectory storage, Generalized Advantage Estimation (GAE), PPO updates, checkpoint management, and inference logic.
+- [`model.py`](challenge3__2/model.py): Defines the convolutional Actor-Critic neural network architecture used by PPO for Atari observations.
+- [`env.py`](challenge3__2/env.py): Creates and configures the ALE/Pitfall-v5 environment with Atari preprocessing, frame stacking, grayscale conversion, resizing, and optional rendering support.
+- [`requirements.txt`](challenge3__2/requirements.txt): Lists the Python dependencies required to reproduce the PPO experiments.
+- [`checkpoints/`](challenge3__2/checkpoints): Directory where the trained `.pt` chekpoints are saved.
+- [`results/`](challenge3__2/results): Graphics of training phase, mean and std of some training configurations.
+- [`challenge3__2_paper.pdf`](challenge3__2/challenge3__2_paper.pdf): IEEE format scientific report detailing our findings.
+
+ ## Setup and Installation
+
+To replicate this environment, ensure you have Python 3.11+ installed. Activate your virtual environment and install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Reproducing the Best Reported Run
+
+After running some baselines and OFAT experiments, our results showed that PPO is better than DQN but not enough for Pitfall's sparse rewards. Our best and stabilized reported run was the baseline for 5,000,000 timesteps or the baseline for 300,000 timesteps, but if we talk about some improvement on exploration the best was the final_baseline for 300,000 timesteps and final baseline for 5,000,000 timesteps , which successfully motivated the agent to explore sub-surface levels.
+
+To exactly reproduce our best training runs (Seed 42), first change the hyperparameters on the [`ppo_agent.py`](challenge3__2/ppo_agent.py) file, for the ones in the [`configs.json`](challenge3__2/configs.json) as wanted and execute the respective command:
+
+```bash
+python train.py --name baseline_5M --seed 42 --total-steps 5_000_000
+python train.py --name baseline_300k --seed 42 --total-steps 3_000
+```
+
+### Watching the agent play
+
+To observe the trained agent's behaviour (e.g., descending the stairs, moving around the environments as documented in our IEEE paper), run the next commands, one by one:
+
+```bash
+python evaluate.py --checkpoint checkpoints/seed_42/best_baseline_5M.pt
+python evaluate.py --checkpoint checkpoints/seed_42/best_baseline_300k.pt
+python evaluate.py --checkpoint checkpoints/seed_42/final_baseline_300k.pt
+python evaluate.py --checkpoint checkpoints/seed_42/final_baseline_5M.pt
+```

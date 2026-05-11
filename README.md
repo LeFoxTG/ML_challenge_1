@@ -119,7 +119,7 @@ pip install -r requirements.txt
 
 After running some baselines and OFAT experiments, our results showed that PPO is better than DQN but not enough for Pitfall's sparse rewards. Our best and stabilized reported run was the baseline for 5,000,000 timesteps or the baseline for 300,000 timesteps, but if we talk about some improvement on exploration the best was the final_baseline for 300,000 timesteps and final baseline for 5,000,000 timesteps , which successfully motivated the agent to explore sub-surface levels.
 
-To exactly reproduce our best training runs (Seed 42), first change the hyperparameters on the [`ppo_agent.py`](challenge3__2/ppo_agent.py) file, for the ones in the [`configs.json`](challenge3__2/configs.json) as wanted and execute the respective command:
+To exactly reproduce our best training runs (Seed 42), first change the hyperparameters on the [`ppo_agent.py`](challenge3__2/ppo_agent.py) file, for the ones in the [`configs.json`](challenge3__2/configs.json) according to the names of the experiments and execute the respective command:
 
 ```bash
 python train.py --name baseline_5M --seed 42 --total-steps 5_000_000

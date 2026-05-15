@@ -2,6 +2,10 @@ BEST PPO RUN
 ```bash
 python evaluate.py --checkpoint checkpoints/seed_42/best_baseline_300k.pt
 ```
+or
+```bash
+python evaluate.py --checkpoint checkpoints/seed_42/best_baseline_5M.pt
+```
 
 SEEDS
 - 42

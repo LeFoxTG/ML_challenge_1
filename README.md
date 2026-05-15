@@ -123,7 +123,7 @@ To exactly reproduce our best training runs (Seed 42), first change the hyperpar
 
 ```bash
 python train.py --name baseline_5M --seed 42 --total-steps 5_000_000
-python train.py --name baseline_300k --seed 42 --total-steps 3_000
+python train.py --name baseline_300k --seed 42 --total-steps 300_000
 ```
 
 ### Watching the agent play

@@ -32,7 +32,7 @@ def evaluate(args):
             env,
             video_folder="Video",
             episode_trigger=lambda ep: True,
-            name_prefix="gail_run"
+            name_prefix="ppo_run"
         )
     
     agent = PPOAgent(env.action_space.n)

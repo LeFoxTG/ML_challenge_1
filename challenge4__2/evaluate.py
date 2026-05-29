@@ -3,6 +3,7 @@ import os
 sys.path.append(os.path.abspath(".."))
 
 import argparse
+from gymnasium.wrappers import RecordVideo
 import torch
 import numpy as np
 
@@ -14,16 +15,28 @@ def evaluate(
     env_id="ALE/Pitfall-v5",
     checkpoint_path="bc_policy.pt",
     episodes=5,
-    render=True,
+    mode="human",
     device="cpu",
 ):
     device = torch.device(device)
-
+    mode = (
+        "rgb_array"
+        if args.mode == "record"
+        else "human"
+    )
     env = make_env(
         env_id,
-        render_mode="human" if render else None,
+        render_mode=mode,
     )
 
+    if mode == "rgb_array":
+        env = RecordVideo(
+            env,
+            video_folder="Video",
+            episode_trigger=lambda ep: True,
+            name_prefix="gail_run"
+        )
+    
     n_actions = env.action_space.n
 
     model = AtariActorCritic(n_actions).to(device)
@@ -108,6 +121,13 @@ def parse_args():
         default=5,
         help="Number of evaluation episodes",
     )
+    
+    parser.add_argument(
+        "--mode",
+        type=str,
+        default="human",
+        help="Render mode (human, rgb_array)",
+    )
 
     return parser.parse_args()
 
@@ -118,4 +138,5 @@ if __name__ == "__main__":
     evaluate(
         checkpoint_path=args.checkpoint_path,
         episodes=args.episodes,
+        mode=args.mode,
     )

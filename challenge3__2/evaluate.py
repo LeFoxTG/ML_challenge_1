@@ -1,6 +1,8 @@
 import argparse
 from env import make_env
 from ppo_agent import PPOAgent
+from gymnasium.wrappers import RecordVideo
+
 
 
 def parse_args():
@@ -25,6 +27,14 @@ def evaluate(args):
     else:
         render_mode = "human"
     env = make_env("ALE/Pitfall-v5", seed=args.seed, render_mode=render_mode)
+    if render_mode == "rgb_array":
+        env = RecordVideo(
+            env,
+            video_folder="Video",
+            episode_trigger=lambda ep: True,
+            name_prefix="gail_run"
+        )
+    
     agent = PPOAgent(env.action_space.n)
 
     agent.load(args.checkpoint)

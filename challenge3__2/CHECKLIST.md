@@ -18,7 +18,7 @@ POINTERS
 - PPO Checkpoints
     - [`challenge3__2/checkpoints/`](../challenge3__2/checkpoints/)
 - DQN logs
-    - [`challenge1__2/logs/`](../challenge1__2/logs/)]
+    - [`challenge1__2/logs/`](../challenge1__2/logs/)
 
 
 SUMMARY

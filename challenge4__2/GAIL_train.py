@@ -359,6 +359,13 @@ def parse_args():
         action="store_true",
         help="Only train GAIL with a saved BC policy without collecting demos or training BC again",
     )
+    
+    parser.add_argument(
+        "--demos_path",
+        type=str,
+        default="demos.npz",
+        help="Path to the demonstrations file (default: demos.npz)",
+    )
 
     return parser.parse_args()
 
@@ -366,23 +373,24 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     if not args.just_gail:
-        demonstrations.collect_demonstrations(
-            env_id="ALE/Pitfall-v5",
-            checkpoints_path=[
-                "../challenge3__2/checkpoints/seed_42/best_more_lr_more_ent.pt",
-                # "../challenge3__2/checkpoints/seed_42/best_baseline_300k.pt",
-                "../challenge3__2/checkpoints/seed_42/best_baseline_5M.pt",
-                # "../challenge3__2/checkpoints/seed_42/best_more_expl.pt",
-                # "../challenge3__2/checkpoints/seed_42/best_more_expl_5M.pt",
-            ],
-            n_steps=20_000,  # Pitfall demos are short - collect less
-            seed=args.seed,
-            device="cpu",
-            output_file="demos.npz",
-        )
-        
+        if not args.demos_path:
+            demonstrations.collect_demonstrations(
+                env_id="ALE/Pitfall-v5",
+                checkpoints_path=[
+                    "../challenge3__2/checkpoints/seed_42/best_more_lr_more_ent.pt",
+                    # "../challenge3__2/checkpoints/seed_42/best_baseline_300k.pt",
+                    "../challenge3__2/checkpoints/seed_42/best_baseline_5M.pt",
+                    # "../challenge3__2/checkpoints/seed_42/best_more_expl.pt",
+                    # "../challenge3__2/checkpoints/seed_42/best_more_expl_5M.pt",
+                ],
+                n_steps=20_000,  # Pitfall demos are short - collect less
+                seed=args.seed,
+                device="cpu",
+                output_file="demos.npz",
+            )
         bc.train_bc(
             env_id="ALE/Pitfall-v5",
+            demos_path=args.demos_path,
             n_epochs=20,
             batch_size=256,
             lr=1e-4,
@@ -392,6 +400,7 @@ if __name__ == "__main__":
 
     policy, disc, returns = train_gail(
         env_id="ALE/Pitfall-v5",
+        demos_path=args.demos_path,
         total_steps=args.steps,
         horizon=1024,
         disc_updates_per_rollout=10,

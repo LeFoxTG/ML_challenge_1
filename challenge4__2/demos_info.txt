@@ -1,0 +1,8 @@
+## Source checkpoint used
+The checkpoints used are some checkpoints of PPO agent of 20,000 steps.
+  - "../challenge3__2/checkpoints/seed_42/best_more_lr_more_ent.pt",
+  - "../challenge3__2/checkpoints/seed_42/best_baseline_300k.pt",
+  - "../challenge3__2/checkpoints/seed_42/best_baseline_5M.pt",
+  - "../challenge3__2/checkpoints/seed_42/best_more_expl.pt",
+  - "../challenge3__2/checkpoints/seed_42/best_more_expl_5M.pt",
+And a human playing checkpoint made by us with 10,000 steps collected.

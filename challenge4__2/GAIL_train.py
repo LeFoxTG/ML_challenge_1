@@ -391,7 +391,7 @@ if __name__ == "__main__":
         bc.train_bc(
             env_id="ALE/Pitfall-v5",
             demos_path=args.demos_path,
-            n_epochs=20,
+            n_epochs=100,
             batch_size=256,
             lr=1e-4,
                 device="cuda" if torch.cuda.is_available() else "cpu",

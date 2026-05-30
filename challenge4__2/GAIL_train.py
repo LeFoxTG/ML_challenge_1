@@ -391,7 +391,7 @@ if __name__ == "__main__":
         bc.train_bc(
             env_id="ALE/Pitfall-v5",
             demos_path=args.demos_path,
-            n_epochs=100,
+            n_epochs=20,
             batch_size=256,
             lr=1e-4,
                 device="cuda" if torch.cuda.is_available() else "cpu",
@@ -403,7 +403,7 @@ if __name__ == "__main__":
         demos_path=args.demos_path,
         total_steps=args.steps,
         horizon=1024,
-        disc_updates_per_rollout=10,
+        disc_updates_per_rollout=5,
         ent_coef=0.02,
         gamma=0.995,
         seed=args.seed,

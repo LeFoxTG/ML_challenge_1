@@ -102,7 +102,7 @@ The repository is structured inside the `challenge3__2` directory as required:
 - [`ppo_agent.py`](challenge3__2/ppo_agent.py): Contains the PPOAgent class, including action selection, trajectory storage, Generalized Advantage Estimation (GAE), PPO updates, checkpoint management, and inference logic.
 - [`model.py`](challenge3__2/model.py): Defines the convolutional Actor-Critic neural network architecture used by PPO for Atari observations.
 - [`env.py`](challenge3__2/env.py): Creates and configures the ALE/Pitfall-v5 environment with Atari preprocessing, frame stacking, grayscale conversion, resizing, and optional rendering support.
-- [`requirements.txt`](challenge3__2/requirements.txt): Lists the Python dependencies required to reproduce the PPO experiments.
+- [`requirements.txt`](challenge3__2/requirements-linux.txt): Lists the Python dependencies required to reproduce the PPO experiments.
 - [`checkpoints/`](challenge3__2/checkpoints): Directory where the trained `.pt` chekpoints are saved.
 - [`results/`](challenge3__2/results): Graphics of training phase, mean and std of some training configurations.
 - [`challenge3__2_paper.pdf`](challenge3__2/challenge3__2_paper.pdf): IEEE format scientific report detailing our findings.
